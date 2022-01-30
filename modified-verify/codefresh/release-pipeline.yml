@@ -19,6 +19,6 @@ steps:
     title: 'Building golang binary'
     description: 'Building binary to release'
     image: golang:1.16
-    working_directory: ${{CF_REPO_NAME}}
+    working_directory: '${{CF_REPO_NAME}}/modified-verify/src'
     commands:
       - go build
