@@ -24,17 +24,10 @@ func compareFiles(changeds []string, fileName string) {
 
 func main() {
 	jsonFile, _ := os.Open("/codefresh/volume/event.json")
-
 	defer jsonFile.Close()
-
 	byteValue, _ := ioutil.ReadAll(jsonFile)
-
 	var teste FilesChangeds
-
 	json.Unmarshal(byteValue, &teste)
-
 	result := teste.HeadCommit.Modified
-
 	compareFiles(result, os.Args[1])
-
 }
