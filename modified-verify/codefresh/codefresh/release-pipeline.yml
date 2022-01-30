@@ -1,0 +1,25 @@
+version: '1.0'
+kind: pipeline
+stages:
+  - clone
+  - build
+  - release
+
+steps:
+  clone_repository:
+    stage: clone
+    type: git-clone
+    title: 'Cloning repository'
+    description: 'Step to clone repository'
+    repo: '${{CF_REPO_OWNER}}/${{CF_REPO_NAME}}'
+    revision: ${{CF_REVISION}}
+
+  build_binary:
+    stage: build
+    type: freestyle
+    title: 'Building golang binary'
+    description: 'Building binary to release'
+    image: golang:1.16
+    working_directory: ${{CF_REPO_NAME}}
+    commands:
+      - go build
